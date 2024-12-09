@@ -167,9 +167,9 @@ def add_mim_extension():
 if __name__ == '__main__':
     add_mim_extension()
     setup(
-        name='mmsegmentation',
+        name='avi-mmsegmentation',
         version=get_version(),
-        description='Open MMLab Semantic Segmentation Toolbox and Benchmark',
+        description='Custom Open MMLab Semantic Segmentation Toolbox and Benchmark',
         long_description=readme(),
         long_description_content_type='text/markdown',
         author='MMSegmentation Contributors',
