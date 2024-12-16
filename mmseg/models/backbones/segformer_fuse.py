@@ -9,7 +9,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from mmseg.models.backbones.segformer_fuse import ConvModule
+from mmseg.models.backbones.conv_module import ConvModule
 
 
 def resize(
