@@ -16,7 +16,7 @@ class SegmentationHead(BaseDecodeHead):
         embedding_dims: List[int] = [128, 64, 32],
         **kwargs
     ):
-        super().__init__(**kwargs)
+        super().__init__(num_classes=num_classes, **kwargs)
         self.upsample = Upsample((4, 4))
         embedding_dims = [input_dim] + embedding_dims
 
