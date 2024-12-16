@@ -10,12 +10,14 @@ import torch.nn as nn
 import loralib as lora
 from timm.models.layers import DropPath, to_2tuple, trunc_normal_
 
+from mmengine.model import BaseModule
+
 from mmseg.registry import MODELS
 from mmseg.models.backbones.segformer_fuse import SegFormerFuse
 
 
 @MODELS.register_module()
-class MixVisionTransformerV2(nn.Module):
+class MixVisionTransformerV2(BaseModule):
     def __init__(
         self,
         img_size=224,

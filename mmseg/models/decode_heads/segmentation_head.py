@@ -1,15 +1,22 @@
-from typing import Tuple
+from typing import Tuple, List
 
 import torch
 from torch import nn
 
 from mmseg.registry import MODELS
+from mmseg.models.decode_heads.decode_head import BaseDecodeHead
 
 
 @MODELS.register_module()
-class SegmentationHead(nn.Module):
-    def __init__(self, num_classes, input_dim=384, embedding_dims=[128, 64, 32]):
-        super().__init__()
+class SegmentationHead(BaseDecodeHead):
+    def __init__(
+        self,
+        num_classes: int,
+        input_dim: int = 384,
+        embedding_dims: List[int] = [128, 64, 32],
+        **kwargs
+    ):
+        super().__init__(**kwargs)
         self.upsample = Upsample((4, 4))
         embedding_dims = [input_dim] + embedding_dims
 
