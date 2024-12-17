@@ -19,7 +19,6 @@ from .tokenizer import tokenize
 from .typing_utils import (ConfigType, ForwardResults, MultiConfig,
                            OptConfigType, OptMultiConfig, OptSampleList,
                            SampleList, TensorDict, TensorList)
-from .logger import get_root_logger, print_log
 
 # isort: off
 from .mask_classification import MatchMasks, seg_data_to_instance_data
@@ -67,7 +66,5 @@ __all__ = [
     'seg_data_to_instance_data',
     'MatchMasks',
     'bdd100k_classes',
-    'bdd100k_palette',
-    'get_root_logger',
-    'print_log'
+    'bdd100k_palette'
 ]
