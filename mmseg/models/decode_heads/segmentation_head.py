@@ -3,13 +3,13 @@
 #
 # This work is licensed under the NVIDIA Source Code License
 # ---------------------------------------------------------------
-import torch.nn as nn
 import torch
+import torch.nn as nn
 from mmcv.cnn import ConvModule
 
+from mmseg.models.utils import *
 from mmseg.registry import MODELS
 from .decode_head import BaseDecodeHead
-from mmseg.models.utils import *
 
 class MLP(nn.Module):
     """

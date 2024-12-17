@@ -3,15 +3,17 @@
 #
 # This work is licensed under the NVIDIA Source Code License
 # ---------------------------------------------------------------
+import math
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+from mmcv.runner import load_checkpoint
 from timm.models.layers import DropPath, to_2tuple, trunc_normal_
+
 from mmseg.registry import MODELS
 from mmseg.utils import get_root_logger
-from mmcv.runner import load_checkpoint
-import math
 
 
 class Mlp(nn.Module):
