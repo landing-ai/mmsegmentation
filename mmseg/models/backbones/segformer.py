@@ -276,14 +276,14 @@ class MixVisionTransformerV2(BaseModule):
 
         return x_cls, outs
 
-    def forward(self, x, return_all_tokens=False):
+    def forward_feature_volume(self, x, return_all_tokens=False):
         x_cls, outs = self.forward_features(x)
         if return_all_tokens:
             return x_cls, outs
         return x_cls
 
-    def forward_feature_volume(self, x, return_all=False):
-        x_cls, outs = self.forward(x, return_all_tokens=True)
+    def forward(self, x, return_all=False):
+        x_cls, outs = self.forward_feature_volume(x, return_all_tokens=True)
         if return_all:
             return outs
         return outs[-1]
