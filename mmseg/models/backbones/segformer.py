@@ -8,7 +8,7 @@ import math
 import torch
 import torch.nn as nn
 
-from mmcv.runner import load_checkpoint
+from mmengine.runner.checkpoint import _load_checkpoint
 from timm.models.layers import DropPath, to_2tuple, trunc_normal_
 
 from mmseg.registry import MODELS
@@ -413,9 +413,7 @@ class MixVisionTransformerV2(nn.Module):
 
     def init_weights(self, pretrained=None):
         if isinstance(pretrained, str):
-            load_checkpoint(
-                self, pretrained, map_location="cpu", strict=False, logger=None
-            )
+            _load_checkpoint(pretrained, map_location="cpu", logger=None)
 
     def reset_drop_path(self, drop_path_rate):
         dpr = [x.item() for x in torch.linspace(0, drop_path_rate, sum(self.depths))]
