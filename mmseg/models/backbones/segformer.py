@@ -252,7 +252,6 @@ class MixVisionTransformerV2(BaseModule):
         for i, blk in enumerate(self.block3):
             x = blk(x, H, W)
         x = self.norm3(x)
-        x_cls3 = self.summarizer_c3(x)
         x = x.reshape(B, H, W, -1).permute(0, 3, 1, 2).contiguous()
         outs.append(x)
 
@@ -261,31 +260,15 @@ class MixVisionTransformerV2(BaseModule):
         for i, blk in enumerate(self.block4):
             x = blk(x, H, W)
         x = self.norm4(x)
-        x_cls4 = self.summarizer_c4(x)
         x = x.reshape(B, H, W, -1).permute(0, 3, 1, 2).contiguous()
         outs.append(x)
 
         x = self.fuse_head(outs)
         outs.append(x)
-        B, C, H, W = x.shape
-        x_clsf = self.summarizer_f(x.reshape(B, C, H * W).permute(0, 2, 1))
+        return outs
 
-        x_cls = [x_cls3, x_cls4, x_clsf]
-        x_cls = torch.stack(x_cls, dim=1)  # [B, 3, fuse_dim]
-        x_cls = torch.mean(x_cls, dim=1)
-
-        return x_cls, outs
-
-    def forward_feature_volume(self, x, return_all_tokens=False):
-        x_cls, outs = self.forward_features(x)
-        if return_all_tokens:
-            return x_cls, outs
-        return x_cls
-
-    def forward(self, x, return_all=False):
-        x_cls, outs = self.forward_feature_volume(x, return_all_tokens=True)
-        if return_all:
-            return outs
+    def forward(self, x):
+        outs = self.forward_features(x)
         return outs[-1]
 
 
