@@ -66,5 +66,5 @@ __all__ = [
     'seg_data_to_instance_data',
     'MatchMasks',
     'bdd100k_classes',
-    'bdd100k_palette'
+    'bdd100k_palette',
 ]
