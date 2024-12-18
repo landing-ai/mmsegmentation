@@ -88,6 +88,7 @@ class MixFFN(BaseModule):
         return identity + self.dropout_layer(out)
 
 
+# replacement for EfficientMultiheadAttention
 class VanillaAttentionWithSRRatio(BaseModule):
     def __init__(
         self,
